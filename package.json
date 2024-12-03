@@ -3,10 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
     "start-solution": "npx tsx index.ts",
     "prettier-format":  "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },

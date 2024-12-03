@@ -41,7 +41,6 @@ const tryToRemoveOneLevel = (
     min: number,
     max: number,
 ): boolean => {
-    debugger;
     for (let index = 0; index < arr.length; index++) {
         let subArray = arr.slice(0, index).concat(arr.slice(index + 1));
         if (isMonotonic(subArray, min, max)) {
