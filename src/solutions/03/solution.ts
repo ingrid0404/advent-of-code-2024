@@ -24,6 +24,6 @@ function partOne(inputData: string): void {
                 memory += parseInt(mul[0]) * parseInt(mul[1]);
             }
         }
-        console.log('Memory: ' + memory)
+        console.log("Memory: " + memory);
     }
 }
