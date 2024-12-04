@@ -5,6 +5,7 @@ export async function solutionDay4(): Promise<void> {
         const inputData = await readProblemDataByDay("04");
         if (inputData) {
             partOne(inputData);
+            partTwo(inputData);
         }
     } catch (err) {
         console.log(err);
@@ -109,15 +110,50 @@ function calculateNumberOfOccurencesInMatrix(matrix: string[][]): number {
 
     return numberOfOccurences;
 }
-function partOne(inputData: string): void {
+
+function calculateXMASInMatrix(matrix: string[][]): number {
     let numberOfOccurences = 0;
+    let x, y;
+    let regex = /(MAS|SAM)/g;
+    let n = matrix.length;
+    for (y = 1; y < n - 1; y++) {
+        for (x = 1; x < matrix[y].length - 1; x++) {
+            let subString1 = matrix[y - 1][x - 1]
+                ?.concat(matrix[y][x])
+                ?.concat(matrix[y + 1][x + 1]);
+            let subString2 = matrix[y + 1][x - 1]
+                ?.concat(matrix[y][x])
+                ?.concat(matrix[y - 1][x + 1]);
+            debugger;
+            if (subString1.match(regex) && subString2.match(regex)) {
+                numberOfOccurences++;
+            }
+        }
+    }
+    return numberOfOccurences;
+}
+
+function processMatrixData(inputData: string): string[][] {
     let matrix: string[][] = [];
     let splitByLine = inputData.split(/\r?\n/);
     for (let index = 0; index < splitByLine.length; index++) {
         matrix.push(splitByLine[index].split(""));
     }
+    return matrix;
+}
+function partOne(inputData: string): void {
+    let numberOfOccurences = 0;
+    let matrix = processMatrixData(inputData);
+
     numberOfOccurences += calculateForCrossMatrix(matrix);
     numberOfOccurences += calculateForEachMatrixCombination(matrix);
 
+    console.log(numberOfOccurences);
+}
+
+function partTwo(inputData: string): void {
+    let numberOfOccurences;
+    let matrix = processMatrixData(inputData);
+    numberOfOccurences = calculateXMASInMatrix(matrix);
     console.log(numberOfOccurences);
 }
