@@ -5,7 +5,7 @@ export async function readProblemDataByDay(
 ): Promise<string | undefined> {
     let data;
     try {
-        data = await fs.readFile(`src/solutions/${day}/input`, {
+        data = await fs.readFile(`src/solutions/${day}/_input`, {
             encoding: "utf8",
         });
     } catch (err) {
